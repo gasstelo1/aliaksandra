@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для тебя ❤️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ЭКРАН 1: ЗАКРЫТЫЙ КОНВЕРТ -->
+    <div class="envelope-wrapper" id="envelopeScreen" onclick="openLetter()">
+        <div class="heart-pulse">💌</div>
+        <h2>Тебе пришло тайное послание...</h2>
+        <p>Нажми на конверт, чтобы открыть</p>
+    </div>
+
+    <!-- ЭКРАН 2: ОТКРЫТОЕ ПИСЬМО (Изначально скрыто) -->
+    <div class="card hidden" id="letterScreen">
+        <!-- Блок для летающих сердечек -->
+        <div class="hearts-container" id="heartsBox"></div>
+
+        <div class="avatar">👑</div>
+        <h1>Моей самой любимой девочке сашуле ✨</h1>
+        
+        <div class="love-text">
+            <p>Я благодарен каждому дню, когда ты улыбаешься мне. Ты делаешь мой мир невероятно ярким, тёплым и счастливым. 🥰</p>
+            <p>Ты — моё самое главное вдохновение. И я безумно люблю тебя, а ты...</p>
+        </div>
+
+        <h2 class="question">любишь меня? 💖</h2>
+
+        <!-- ИНТАКТИВНЫЕ КНОПКИ -->
+        <div class="buttons-group">
+            <button class="btn btn-yes" onclick="sayYes()">Да, конечно! 😍</button>
+            <button class="btn btn-no" id="btnNo">Ни за что! 😜</button>
+        </div>
+    </div>
+
+    <script>
+        // Функция открытия конверта
+        function openLetter() {
+            document.getElementById('envelopeScreen').classList.add('hidden');
+            const letter = document.getElementById('letterScreen');
+            letter.classList.remove('hidden');
+            
+            // Запускаем бесконечные летающие сердечки
+            setInterval(createHeart, 400);
+        }
+
+        // Функция создания летающих сердечек
+        function createHeart() {
+            const container = document.getElementById('heartsBox');
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerText = '❤️';
+            
+            // Случайное место появления по ширине
+            heart.style.left = Math.random() * 100 + '%';
+            // Случайный размер сердечка
+            heart.style.fontSize = Math.random() * 15 + 15 + 'px';
+            // Случайная скорость взлета
+            heart.style.animationDuration = Math.random() * 2 + 2 + 's';
+            
+            container.appendChild(heart);
+            
+            // Удаляем сердечко после вылета за экран
+            setTimeout(() => { heart.remove(); }, 4000);
+        }
+
+        // ЛОГИКА УБЕГАЮЩЕЙ КНОПКИ "НЕТ"
+        const btnNo = document.getElementById('btnNo');
+
+        function moveButton() {
+            // Кнопка прыгает строго внутри белой карточки
+            const randomTop = Math.floor(Math.random() * 200) + 100;
+            const randomLeft = Math.floor(Math.random() * 160) + 20;
+            
+            btnNo.style.position = 'absolute';
+            btnNo.style.zIndex = '10';
+            btnNo.style.top = randomTop + 'px';
+            btnNo.style.left = randomLeft + 'px';
+        }
+
+        // Срабатывает и на мышку, и на палец айфона
+        btnNo.addEventListener('mouseover', moveButton);
+        btnNo.addEventListener('touchstart', moveButton);
+
+        // Функция при нажатии на кнопку "ДА"
+        function sayYes() {
+            // ⚠️ ЗАМЕНИТЕ слово ТВОЙ_НИК на ваш реальный ник в Telegram (без значка @)
+            const telegramUsername = "gasstelo"; 
+            
+            const message = "Я открыла твою открытку... ДА! Я тебя очень сильно люблю! 💘✨";
+            window.location.href = https;//t.me{telegramUsername}?text=${encodeURIComponent(message)};
+        }
+    </script>
+</body>
+</html>

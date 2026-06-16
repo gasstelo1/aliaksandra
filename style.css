@@ -1,0 +1,172 @@
+/* Базовые настройки страницы */
+body {
+    background: linear-gradient(135deg, #ffe5ec, #ffc2d1); /* Нежный розовый градиент */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden; /* Чтобы прыгающая кнопка не ломала экран iPhone */
+}
+
+/* Экран 1: Конверт */
+.envelope-wrapper {
+    text-align: center;
+    cursor: pointer;
+    animation: bounce 2s infinite;
+}
+
+.heart-pulse {
+    font-size: 90px;
+    animation: pulse 1.5s infinite;
+}
+
+.envelope-wrapper h2 {
+    color: #ff477e;
+    font-size: 22px;
+    margin: 15px 0 5px 0;
+}
+
+.envelope-wrapper p {
+    color: #ff7096;
+    margin: 0;
+    font-size: 15px;
+}
+
+/* Экран 2: Главная карточка с текстом */
+.card {
+    background-color: white;
+    padding: 30px 25px;
+    border-radius: 30px;
+    box-shadow: 0 15px 35px rgba(255, 71, 126, 0.25);
+    text-align: center;
+    max-width: 340px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-height: 480px;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+/* Скрытие элементов */
+.hidden {
+    display: none !important;
+}
+
+.avatar {
+    font-size: 50px;
+    background-color: #ffe5ec;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: #ff477e;
+    font-size: 22px;
+    margin: 10px 0 0 0;
+}
+
+.love-text p {
+    color: #4a5568;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.question {
+    color: #ff0a54;
+    font-size: 18px;
+    margin: 15px 0;
+}
+
+/* Оформление группы кнопок */
+.buttons-group {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    justify-content: center;
+    min-height: 50px;
+    align-items: center;
+}
+
+.btn {
+    border: none;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s;
+}
+
+.btn-yes {
+    background-color: #ff477e;
+    color: white;
+    box-shadow: 0 5px 15px rgba(255, 71, 126, 0.3);
+}
+
+.btn-no {
+    background-color: #f1f5f9;
+    color: #64748b;
+}
+
+/* АНИМАЦИИ ВЗЛЕТАЮЩИХ СЕРДЕЧЕК */
+.hearts-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none; /* Чтобы сердечки не мешали нажимать кнопки */
+    border-radius: 30px;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -20px;
+    opacity: 0;
+    animation: flyUp linear forwards;
+}
+
+@keyframes flyUp {
+    0% {
+        bottom: -20px;
+        opacity: 0;
+        transform: translateX(0) scale(0.5);
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        bottom: 105%;
+        opacity: 0;
+        transform: translateX(30px) scale(1.2);
+    }
+}
+
+/* Стандартные анимации для пульса и покачивания конверта */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
