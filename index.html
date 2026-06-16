@@ -32,7 +32,7 @@
 
         <!-- ИНТАКТИВНЫЕ КНОПКИ -->
         <div class="buttons-group">
-            <button class="btn btn-yes" onclick="sayYes()">Да, конечно! 😍</button>
+            <button class="btn btn-yes" onclick="openLetter()">Да, конечно! 😍</button>
             <button class="btn btn-no" id="btnNo">Ни за что! 😜</button>
         </div>
     </div>
@@ -46,6 +46,10 @@
             
             // Запускаем бесконечные летающие сердечки
             setInterval(createHeart, 400);
+        }
+        // Через пол секунды после открытия письма перенапрвляем на Телеграмм
+        setTimeout(); {
+            sayYes();
         }
 
         // Функция создания летающих сердечек
