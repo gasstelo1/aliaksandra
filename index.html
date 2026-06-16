@@ -38,66 +38,42 @@
     </div>
 
     <script>
-        // Функция открытия конверта
-        function openLetter() {
-            document.getElementById('envelopeScreen').classList.add('hidden');
-            const letter = document.getElementById('letterScreen');
-            letter.classList.remove('hidden');
-            
-            // Запускаем бесконечные летающие сердечки
-            setInterval(createHeart, 400);
-        }
-        // Через пол секунды после открытия письма перенапрвляем на Телеграмм
-        setTimeout(); {
-            sayYes();
-        }
+        // Находим кнопки на странице
+const btnNo = document.getElementById('btnNo');
 
-        // Функция создания летающих сердечек
-        function createHeart() {
-            const container = document.getElementById('heartsBox');
-            const heart = document.createElement('div');
-            heart.classList.add('floating-heart');
-            heart.innerText = '❤️';
-            
-            // Случайное место появления по ширине
-            heart.style.left = Math.random() * 100 + '%';
-            // Случайный размер сердечка
-            heart.style.fontSize = Math.random() * 15 + 15 + 'px';
-            // Случайная скорость взлета
-            heart.style.animationDuration = Math.random() * 2 + 2 + 's';
-            
-            container.appendChild(heart);
-            
-            // Удаляем сердечко после вылета за экран
-            setTimeout(() => { heart.remove(); }, 4000);
-        }
+// Функция, которая прячет конверт, открывает письмо и сразу перекидывает в Телеграм
+function openLetter() {
+    // 1. Прячем экран с конвертом и показываем открытку
+    document.getElementById('envelopeScreen').classList.add('hidden');
+    document.getElementById('letterScreen').classList.remove('hidden');
 
-        // ЛОГИКА УБЕГАЮЩЕЙ КНОПКИ "НЕТ"
-        const btnNo = document.getElementById('btnNo');
+    // 2. Включаем летающие сердечки (если функция createHeart создана в коде)
+    if (typeof createHeart === 'function') {
+        setInterval(createHeart, 400);
+    }
 
-        function moveButton() {
-            // Кнопка прыгает строго внутри белой карточки
-            const randomTop = Math.floor(Math.random() * 200) + 100;
-            const randomLeft = Math.floor(Math.random() * 160) + 20;
-            
-            btnNo.style.position = 'absolute';
-            btnNo.style.zIndex = '10';
-            btnNo.style.top = randomTop + 'px';
-            btnNo.style.left = randomLeft + 'px';
-        }
+    // 3. Перенаправляем в Telegram
+    const username = "gasstelo"; // Убедитесь, что это точный ник без @
+    const text = "Я открыла твою открытку... ДА! Я тебя очень сильно люблю! ❤️✨";
+    
+    // Открываем Телеграм прямо в этом же окне
+    window.location.href = "https://t.me" + username + "?text=" + encodeURIComponent(text);
+}
 
-        // Срабатывает и на мышку, и на палец айфона
-        btnNo.addEventListener('mouseover', moveButton);
-        btnNo.addEventListener('touchstart', moveButton);
+// Функция для кнопки "Нет" (чтобы она убегала)
+function moveButton() {
+    const randomTop = Math.floor(Math.random() * (window.innerHeight - 50));
+    const randomLeft = Math.floor(Math.random() * (window.innerWidth - 100));
+    btnNo.style.position = 'absolute';
+    btnNo.style.top = randomTop + 'px';
+    btnNo.style.left = randomLeft + 'px';
+}
 
-        // Функция при нажатии на кнопку "ДА"
-        function sayYes() {
-            // ⚠️ ЗАМЕНИТЕ слово ТВОЙ_НИК на ваш реальный ник в Telegram (без значка @)
-            const telegramUsername = "gasstelo"; 
-            
-            const message = "Я открыла твою открытку... ДА! Я тебя очень сильно люблю! 💘✨";
-            window.location.href = https;//t.me{telegramUsername}?text=${encodeURIComponent(message)};
-        }
+// Привязываем убегание кнопки "Нет"
+if (btnNo) {
+    btnNo.addEventListener('mouseover', moveButton);
+    btnNo.addEventListener('touchstart', moveButton);
+}
     </script>
 </body>
 </html>
